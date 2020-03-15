@@ -10,19 +10,33 @@ use App\Http\Controllers;
 
 class ComentariesController extends ApiController
 {
-   
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
       $comentary = Comentary::all();
       return $this-> showAll($comentary);
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
-       
+        //
     }
 
-    
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
       
@@ -33,19 +47,36 @@ class ComentariesController extends ApiController
       return response()->json(['data' =>$comentary]);
     }
 
-   
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show($id)
     {
       $comentary = Comentary::findOrfail($id);
       return $this->showOne($comentary);
     }
 
-   
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function edit($id)
     {
-        
+        //
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, $id)
     {
 
@@ -78,6 +109,13 @@ class ComentariesController extends ApiController
       return response()->json(['data'=> $comentary], 200);
 
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($id)
     {
       $comentary = Comentary::findOrfail($id);
