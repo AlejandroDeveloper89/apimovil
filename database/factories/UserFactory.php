@@ -12,7 +12,6 @@ $factory->define(Rol::class, function (Faker\Generator $faker) {
         'rol' => $faker->word,
     ];
 });
-
 $factory->define(User::class, function (Faker\Generator $faker) {
     return [
         'nombre' => $faker->firstName,
