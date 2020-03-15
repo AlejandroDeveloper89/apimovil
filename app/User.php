@@ -2,38 +2,32 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
+use App\Transformer\UserTransformer;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class User extends Authenticatable
+class User extends Model
 {
-    use Notifiable;
+  use SoftDeletes;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
+  public $transformer = UserTransformer::class;
+  protected $dates = ['deleted_at'];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+  protected $fillable = [
+      'nombre',
+      'apellido',
+      'email',
+      'password',
+      'id_rols'
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+  ];
+  public function rol()
+  {
+    return $this->belongsTo(Rol::class);//Relacion de a uno a uno
+  }
+ 
+  public function comentarys()//Un usuario puede hacer muchos coemtnarios
+  {
+    return $this->hasMany(Comentary::class);
+  }
 }
