@@ -78,7 +78,6 @@ class ComentariesController extends ApiController
       return response()->json(['data'=> $comentary], 200);
 
     }
-
     public function destroy($id)
     {
       $comentary = Comentary::findOrfail($id);
